@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="광명유기">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon-48.png" sizes="48x48">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>광명유기 업무앱</title>
+<style>
+:root {
+  /* iOS 설정 화면 형식: 회색 바탕 위 흰 그룹 목록, 행 전체가 버튼 */
+  --bg: #F2F2F7;
+  --group: #FFFFFF;
+  --label: #000000;
+  --secondary: #8A8A8E;
+  --separator: rgba(60, 60, 67, .18);
+  --tint: #007AFF;
+  --pressed: #E5E5EA;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000; --group: #1C1C1E; --label: #FFFFFF; --secondary: #8D8D93;
+    --separator: rgba(84, 84, 88, .55); --tint: #0A84FF; --pressed: #2C2C2E; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #000000; --group: #1C1C1E; --label: #FFFFFF; --secondary: #8D8D93;
+  --separator: rgba(84, 84, 88, .55); --tint: #0A84FF; --pressed: #2C2C2E; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--label);
+  font-family: var(--font); font-size: 17px; line-height: 1.3;
+  -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;
+}
+.wrap { max-width: 600px; margin: 0 auto; padding: calc(36px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(48px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left)); display: grid; gap: 28px; }
+
+header { padding: 0 4px; }
+header h1 { margin: 0; line-height: 0; }
+.logo { display: block; height: 27px; width: auto; max-width: 100%; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logo { filter: invert(1); } }
+:root[data-theme="dark"] .logo { filter: invert(1); }
+
+section { display: grid; gap: 7px; }
+.section-title {
+  margin: 0; padding: 0 16px; font-size: 13px; color: var(--secondary);
+  text-transform: uppercase; letter-spacing: .02em;
+}
+.group { background: var(--group); border-radius: 12px; overflow: hidden; }
+
+.cell { position: relative; }
+.cell + .cell .cell-main::before {
+  content: ""; position: absolute; top: 0; right: 0; left: 62px; height: .5px; background: var(--separator);
+}
+.cell-main {
+  position: relative; display: grid; grid-template-columns: 30px 1fr 14px; gap: 16px; align-items: center;
+  min-height: 60px; padding: 10px 16px 10px 16px; padding-right: 16px;
+  color: inherit; text-decoration: none;
+}
+.cell-main:active { background: var(--pressed); }
+.cell-main:focus-visible { outline: 3px solid var(--tint); outline-offset: -3px; border-radius: 12px; }
+.text { min-width: 0; padding-right: 44px; }
+.title { display: block; font-size: 17px; }
+.sub { display: block; margin-top: 2px; font-size: 13px; color: var(--secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.app-icon {
+  width: 30px; height: 30px; border-radius: 7px; display: grid; place-items: center; color: #fff;
+}
+.app-icon svg { width: 19px; height: 19px; }
+.orange { background: #FF9500; }
+.indigo { background: #5856D6; }
+.green  { background: #34C759; }
+
+.chev { width: 8px; height: 14px; color: #C4C4C7; justify-self: end; }
+
+.copy {
+  position: absolute; top: 50%; right: 38px; transform: translateY(-50%);
+  width: 44px; height: 44px; border: 0; border-radius: 22px; background: transparent;
+  color: var(--tint); display: grid; place-items: center; cursor: pointer;
+}
+.copy svg { width: 21px; height: 21px; }
+.copy:active { background: var(--pressed); }
+.copy:focus-visible { outline: 3px solid var(--tint); outline-offset: -3px; }
+.copy .check { display: none; }
+.copy.done .check { display: block; }
+.copy.done .doc { display: none; }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(28px + env(safe-area-inset-bottom)); transform: translateX(-50%); max-width: calc(100% - 32px);
+  padding: 12px 20px; border-radius: 999px; font-size: 15px; font-weight: 500;
+  background: rgba(30, 30, 32, .86); color: #fff; word-break: break-all; user-select: all;
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+}
+.toast[hidden] { display: none; }
+
+footer { text-align: center; font-size: 13px; color: var(--secondary); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><img class="logo" src="wordmark.png" alt="광명유기" width="500" height="108"></h1>
+  </header>
+
+  <section>
+    <p class="section-title">출고 · 배송</p>
+    <div class="group">
+      <div class="cell">
+        <a class="cell-main" href="https://claude.ai/artifact/S6ygjz4evpHQv8GVpNUunG" target="_blank" rel="noopener">
+          <span class="app-icon orange" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>
+          </span>
+          <span class="text"><span class="title">CJ 송장 변환</span><span class="sub">사방넷 · 고향사랑 주문 → CJ대한통운 양식</span></span>
+          <svg class="chev" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg>
+        </a>
+        <button type="button" class="copy" data-url="https://claude.ai/artifact/S6ygjz4evpHQv8GVpNUunG" aria-label="CJ 송장 변환 주소 복사"></button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-title">상품 개발 · 원가</p>
+    <div class="group">
+      <div class="cell">
+        <a class="cell-main" href="https://claude.ai/artifact/EiJVwwrtHhKSiMCb5jDCSu" target="_blank" rel="noopener">
+          <span class="app-icon indigo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10c0 4.4 3.6 8 8 8s8-3.6 8-8H4z"/><path d="M8 21h8M12 18v3"/></svg>
+          </span>
+          <span class="text"><span class="title">3D 상품 개발 의뢰서</span><span class="sub">새 제품 형태 · 치수 · 요청사항 접수</span></span>
+          <svg class="chev" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg>
+        </a>
+        <button type="button" class="copy" data-url="https://claude.ai/artifact/EiJVwwrtHhKSiMCb5jDCSu" aria-label="3D 상품 개발 의뢰서 주소 복사"></button>
+      </div>
+      <div class="cell">
+        <a class="cell-main" href="https://claude.ai/artifact/W5tzorAF2Togyouff8Puuf" target="_blank" rel="noopener">
+          <span class="app-icon green" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h1M12 12h1M16 12h0M8 16h1M12 16h1M16 16h0"/></svg>
+          </span>
+          <span class="text"><span class="title">원가 산출 계산기</span><span class="sub">합금 무게 · 구리 78/80% · 공정비 · 판매가</span></span>
+          <svg class="chev" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg>
+        </a>
+        <button type="button" class="copy" data-url="https://claude.ai/artifact/W5tzorAF2Togyouff8Puuf" aria-label="원가 산출 계산기 주소 복사"></button>
+      </div>
+    </div>
+  </section>
+
+  <footer id="hint">홈 화면에 추가하면 앱처럼 열 수 있습니다</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script>
+const COPY_ICON =
+  '<svg class="doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6.5A2.5 2.5 0 0 0 13.5 4h-7A2.5 2.5 0 0 0 4 6.5v7A2.5 2.5 0 0 0 6.5 16H8"/></svg>' +
+  '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+const toast = document.getElementById('toast');
+let timer;
+function showToast(msg, ms) {
+  toast.textContent = msg; toast.hidden = false;
+  clearTimeout(timer); timer = setTimeout(() => { toast.hidden = true; }, ms || 1600);
+}
+document.querySelectorAll('.copy').forEach(btn => {
+  btn.innerHTML = COPY_ICON;
+  btn.addEventListener('click', async () => {
+    const url = btn.dataset.url;
+    try {
+      await navigator.clipboard.writeText(url);
+      btn.classList.add('done');
+      setTimeout(() => btn.classList.remove('done'), 1400);
+      showToast('주소를 복사했습니다');
+    } catch (e) {
+      showToast('자동 복사가 막혔습니다. 길게 눌러 복사하세요: ' + url, 6000);
+    }
+  });
+});
+// 앱으로 설치해서 열었으면 안내 문구를 숨긴다
+if (matchMedia('(display-mode: standalone)').matches || navigator.standalone) {
+  document.getElementById('hint').hidden = true;
+}
+if ('serviceWorker' in navigator) {
+  addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+</script>
+</body>
+</html>

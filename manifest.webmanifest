@@ -1,0 +1,16 @@
+{
+  "name": "광명유기 업무앱",
+  "short_name": "광명유기",
+  "description": "광명유기 업무 도구 모음: CJ 송장 변환, 3D 상품 개발 의뢰서, 원가 산출 계산기",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2F2F7",
+  "theme_color": "#F2F2F7",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
