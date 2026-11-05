@@ -80,6 +80,8 @@ section { display: grid; gap: 7px; }
 .orange { background: #FF9500; }
 .indigo { background: #5856D6; }
 .green  { background: #34C759; }
+.pink   { background: #FF2D55; }
+.blue   { background: #007AFF; }
 
 .chev { width: 8px; height: 14px; color: #C4C4C7; justify-self: end; }
 
@@ -112,6 +114,32 @@ footer { text-align: center; font-size: 13px; color: var(--secondary); }
   <header>
     <h1><img class="logo" src="wordmark.png" alt="광명유기" width="500" height="108"></h1>
   </header>
+
+  <section>
+    <p class="section-title">홈페이지</p>
+    <div class="group">
+      <div class="cell">
+        <a class="cell-main" href="https://www.gmykmall.com/" target="_blank" rel="noopener">
+          <span class="app-icon pink" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          </span>
+          <span class="text"><span class="title">쇼핑 홈페이지</span><span class="sub">gmykmall.com</span></span>
+          <svg class="chev" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg>
+        </a>
+        <button type="button" class="copy" data-url="https://www.gmykmall.com/" aria-label="쇼핑 홈페이지 주소 복사"></button>
+      </div>
+      <div class="cell">
+        <a class="cell-main" href="https://mflap.co.kr/" target="_blank" rel="noopener">
+          <span class="app-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-4 7 4v13"/><path d="M9 21v-6h6v6"/></svg>
+          </span>
+          <span class="text"><span class="title">도매 홈페이지</span><span class="sub">mflap.co.kr</span></span>
+          <svg class="chev" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg>
+        </a>
+        <button type="button" class="copy" data-url="https://mflap.co.kr/" aria-label="도매 홈페이지 주소 복사"></button>
+      </div>
+    </div>
+  </section>
 
   <section>
     <p class="section-title">출고 · 배송</p>
