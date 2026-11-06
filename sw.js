@@ -1,5 +1,5 @@
 // 앱 화면을 기기에 저장해 두어 인터넷이 약해도 첫 화면이 바로 열리게 한다.
-const CACHE = 'gmyg-v5';
+const CACHE = 'gmyg-v6';
 const FILES = ['./', './index.html', './manifest.webmanifest', './wordmark.png',
   './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png', './icons/favicon-48.png'];
 self.addEventListener('install', e => {
